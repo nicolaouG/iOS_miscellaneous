@@ -128,6 +128,7 @@ extension HorizontalCollectionFilter: UICollectionViewDataSource, UICollectionVi
         if dataSource.count > indexPath.item {
             cell?.titleLabel.text = dataSource[indexPath.item]
         }
+        cell?.isFilterSelected = selectedIndexPaths.contains(indexPath)
         return cell ?? FilterCollectionViewCell()
     }
     
