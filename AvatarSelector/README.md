@@ -14,6 +14,7 @@
 - Handles iPad's popover presentation of action sheets (just initialise with a sourceView and arrow direction)
 - Implement the delegate to get image or its removal
 - Saves the selected image in user defaults (give you key - probably a distinctive one in case of multiple users / logins)
+- On iOS >= 14 the new *PHPickerViewController* is used
 
 
 ![](demo.gif)
