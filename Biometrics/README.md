@@ -4,8 +4,8 @@
 
 
 - The password screen will show only when the fallback option is set to true
-- For simulator -> Features / Face ID (or Touch ID) / Enrolled
-  (and when prompted for authentication -> Features / Face ID (or Touch ID) / Matching or Not)
+- For simulator: *Features / Face ID (or Touch ID) / Enrolled*
+  - And when prompted for authentication: *Features / Face ID (or Touch ID) / Matching or Not*
 - Touch id - provide reason in LAContext rather than in plist
 - Face id - plist privacy permission and message for reason
 ```xml
