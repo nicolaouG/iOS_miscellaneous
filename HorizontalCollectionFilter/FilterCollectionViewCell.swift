@@ -30,6 +30,13 @@ public class FilterCollectionViewCell: UICollectionViewCell {
     public var textPadding: UIEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
     public var labelPadding: UIEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
     
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if #available(iOS 13.0, *),
+           previousTraitCollection?.hasDifferentColorAppearance(comparedTo: traitCollection) ?? false {
+            titleLabel.layer.borderColor = MainApp.shared.theme.textColor.cgColor
+        }
+    }
+    
     public convenience init(textPadding: UIEdgeInsets, labelPadding: UIEdgeInsets) {
         self.init(frame: .zero)
         self.textPadding = textPadding
