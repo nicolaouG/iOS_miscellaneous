@@ -5,3 +5,6 @@
 ![multiple selection](demo_multiple.gif "multiple selection")  
 <br/><br/>
 ![single selection](demo_single.gif "single selection")
+
+### Notes:
+- Handle the cells' border color - if customized and if necessary - when trait collection changes (function traitCollectionDidChange and titleLabel in FilterCollectionViewCell).
