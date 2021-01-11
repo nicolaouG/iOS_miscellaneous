@@ -1,0 +1,29 @@
+
+trigger:
+- main
+
+pool:
+  name: 'iOS'
+
+steps:
+# Allow scripts to access the system token
+- checkout: self
+  persistCredentials: true
+
+- script: |
+    echo "Echo: enable scripts to run Git commands (with git config ...)"
+    git config --global user.email "gnicolaou@axiomc.com"
+    git config --global user.name "George"
+    echo "Echo: checkout to azure's master branch (from detached HEAD)"
+    git checkout main
+    echo "Echo: set remote url to track the github repo"
+    git remote set-url origin https://github.com/axiomc/test_push_from_azure.git
+    echo "Echo: pull any remote tags"
+    git pull --tags
+    echo "Echo: force push azure repo to github"
+    git push origin main -f
+    echo "Echo: run script to auto increment the tag (should be in the same folder with the yml)"
+    sh auto_increment_tag.sh
+    echo "Echo: push and overwrite tags"
+    git push --tags -f
+  displayName: 'Commit and Tag to Github from pipeline'
