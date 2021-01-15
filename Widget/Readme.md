@@ -65,8 +65,8 @@ extension  AppDelegate {
     - Run the widget target, long-press the widget, edit and see your changes.
     - In the widget's `getTimeline` add the configuration to the entry to be handled in the `WidgetEntryView`.
     
-![](https://github.com/nicolaouG/iOS_miscellaneous/blob/main/Widget/WidgetIntent.png =666x425)
-![](https://github.com/nicolaouG/iOS_miscellaneous/blob/main/Widget/IntentEnumProperty.png =507)
+<img src="https://github.com/nicolaouG/iOS_miscellaneous/blob/main/Widget/WidgetIntent.png" width="666">
+<img src="https://github.com/nicolaouG/iOS_miscellaneous/blob/main/Widget/IntentEnumProperty.png" width="507">
 
 - To show an image from a url, it must be loaded synchronously so, instead of using Kingfisher, use the `URLImage.swift` helper file or load a UIImage from `Data(contentsOf: url)`.
 
