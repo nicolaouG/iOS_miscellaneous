@@ -9,7 +9,7 @@ Notes:
 
 - Add the AppGroup capability to share data between targets:
     - enable it for *bundle identifier* in [Apple Developer](#https://developer.apple.com/account/resources/identifiers/).
-    - add it in Xcode for each necessary targets: *Signing & Capabilities > + Capability > App Groups > + group.com.name.your.group*
+    - add it in Xcode for each necessary target: *Signing & Capabilities > + Capability > App Groups > + group.com.name.your.group*
 
 - Test saving in the app group to trigger a timeline reload and update the widget. E.g:
 ```swift
@@ -62,7 +62,7 @@ extension  AppDelegate {
 - For an `IntentConfiguration` with user-configurable properties and so an `IntentTimelineProvider`, a SiriKit Intent Definition File is needed (*.intentdefinition*).
     - Add a parameter, set its type from the drop down menu.
     - Edit the parameter accordingly.
-    - Run the widget target, long-press the widget, edit and see your changes.
+    - Run the widget target, long-press the widget, edit, and see your changes.
     - In the widget's `getTimeline` add the configuration to the entry to be handled in the `WidgetEntryView`.
     
 <img src="https://github.com/nicolaouG/iOS_miscellaneous/blob/main/Widget/WidgetIntent.png" width="666">
