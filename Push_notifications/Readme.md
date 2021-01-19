@@ -121,6 +121,7 @@ if let aps = bestAttemptContent.userInfo["aps"] as? [String: Any],
 	bestAttemptContent.attachments = [imageAttachment]
 }
 ```
+<img src="https://github.com/nicolaouG/iOS_miscellaneous/blob/main/Push_notifications/rich_notification.jpg" width="250">
 
 ### Test payload
 ```json
