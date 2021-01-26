@@ -28,10 +28,12 @@ steps:
     git config --global user.email "gnicolaou@axiomc.com"
     git config --global user.name "George"
     echo "Echo: checkout to azure's master branch (from detached HEAD) (remove the previous one if any)"
-    git branch -d master
+    git branch -d main
     git checkout main
     echo "Echo: set remote url to track the github repo"
     git remote set-url origin https://github.com/axiomc/test_push_from_azure.git
+    echo "Echo: pull any changes"
+    git pull
     echo "Echo: pull any remote tags"
     git pull --tags
     echo "Echo: force push azure repo to github"
