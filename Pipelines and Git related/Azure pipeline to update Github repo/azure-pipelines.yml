@@ -27,7 +27,8 @@ steps:
     echo "Echo: enable scripts to run Git commands (with git config ...)"
     git config --global user.email "gnicolaou@axiomc.com"
     git config --global user.name "George"
-    echo "Echo: checkout to azure's master branch (from detached HEAD)"
+    echo "Echo: checkout to azure's master branch (from detached HEAD) (remove the previous one if any)"
+    git branch -d master
     git checkout main
     echo "Echo: set remote url to track the github repo"
     git remote set-url origin https://github.com/axiomc/test_push_from_azure.git
