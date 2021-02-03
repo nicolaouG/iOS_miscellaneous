@@ -1,6 +1,6 @@
 //
 //  PassKitViewController.swift
-//  CharaTraining
+//  Test
 //
 //  Created by george on 20/01/2021.
 //
