@@ -259,5 +259,10 @@ Selecting a different Xcode version
 ## Crash reports from console
 
 To symbolicate the crash and find the function and line in Xcode that causes it:
-`atos -arch <BinaryArchitecture> -o <PathToDSYMFile>/Contents/Resources/DWARF/<BinaryName>  -l <LoadAddress> <AddressesToSymbolicate>`
+```
+atos -arch <BinaryArchitecture> -o <PathToDSYMFile>/Contents/Resources/DWARF/<BinaryName>  -l <LoadAddress> <AddressesToSymbolicate>
+```
+
+![Symbolicate crash](https://github.com/nicolaouG/iOS_miscellaneous/blob/main/iXGuard/symbolicate_crash.png "Symbolicate crash")
+
 
