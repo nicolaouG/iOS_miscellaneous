@@ -1,18 +1,18 @@
 
 # **iXGuard notes**
- 
 
-### License reference
+```
+# License reference
 license:
   - "ixguard-license.txt"
 
-### ThreatCast console monitoring
+# ThreatCast console monitoring
 monitor:
   threatcast-key: "youKeyHere"
   threatcast-appuserid-getter: "getAppUserID"
   threatcast-appuserid-size: 512
 
-### Codesigning Details
+# Codesigning Details
 export:
   identity: '471013249E36298E3217A8A2A97C82AC833F519C'
   provisioning:
@@ -21,7 +21,7 @@ export:
 debug:
   verbosity: info # or debug
 
-### Obfuscation Options
+# Obfuscation Options
 protection:
   enabled: true
   default-disabled: true
@@ -148,7 +148,7 @@ protection:
       - 'offline-model.json'
     blacklist:
       - 'unecrypted.txt'
-
+```
 
 
 
@@ -189,6 +189,7 @@ public func myIxguardCallbackFunc(context: UnsafePointer<IXGCallbackContext>) {
 
 ## iXGuardCallback get user id for Threatcast
 
+```swift
 @_cdecl("getAppUserID")
 public func iXGuardUserIdGetter(buffer: UnsafeMutablePointer<Int8>, size: Int32) {
     let userId = "some_user_id"
@@ -196,7 +197,7 @@ public func iXGuardUserIdGetter(buffer: UnsafeMutablePointer<Int8>, size: Int32)
         strncpy(buffer, $0, Int(size))
     }
 }
-
+```
 
 
 ## Instructions
@@ -259,4 +260,4 @@ Selecting a different Xcode version
 
 To symbolicate the crash and find the function and line in Xcode that causes it:
 `atos -arch <BinaryArchitecture> -o <PathToDSYMFile>/Contents/Resources/DWARF/<BinaryName>  -l <LoadAddress> <AddressesToSymbolicate>`
-￼
+
