@@ -224,11 +224,11 @@ public func iXGuardUserIdGetter(buffer: UnsafeMutablePointer<Int8>, size: Int32)
   ```
 
 - Selecting Xcode Version:
-  To view the currently selected Xcode version
+  - To view the currently selected Xcode version
   ```bash
   $ xcode-select --print-path
   ```
-  Selecting a different Xcode version
+  - Selecting a different Xcode version
   ```bash
   $ sudo xcode-select --switch /path/to/Xcode.app
   ```
