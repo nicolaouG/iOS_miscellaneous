@@ -209,26 +209,31 @@ public func iXGuardUserIdGetter(buffer: UnsafeMutablePointer<Int8>, size: Int32)
 - add the ixguard-license.txt file in the folder
 
 - generate the default ixguard.yml and the obfuscated.ipa (and some other files):
-```bash
-$ ixguard -o Obfuscated.ipa MyOriginalApp.ipa
-```
+  ```bash
+  $ ixguard -o Obfuscated.ipa MyOriginalApp.ipa
+  ```
 
 - alternatively generate obfuscated ipa with an already created ixguard.yml (if not in the same folder, modify the path in the terminal `ixguard.yml`)
-```bash  
-$ ixguard -config ixguard.yml -o Obfuscated.ipa MyOriginalApp.ipa
-```
+  ```bash  
+  $ ixguard -config ixguard.yml -o Obfuscated.ipa MyOriginalApp.ipa
+  ```
 
 - find the correct identity to sign the obfuscated ipa (*note*: cannot test with a distribution bundleId. Instead, use an adhoc bundleId)
-```bash
-$ xcrun security find-identity -v -p codesigning
-```
+  ```bash
+  $ xcrun security find-identity -v -p codesigning
+  ```
 
 - Selecting Xcode Version:
-To view the currently selected Xcode version   $ xcode-select --print-path
-Selecting a different Xcode version
-```bash
-$ sudo xcode-select --switch /path/to/Xcode.app
-```
+  To view the currently selected Xcode version
+  ```bash
+  $ xcode-select --print-path
+  ```
+  Selecting a different Xcode version
+  ```bash
+  $ sudo xcode-select --switch /path/to/Xcode.app
+  ```
+  
+- Guardsquare does not provide older ixguard executables/installers so you might not want to delete any downloaded ones
 
 
 
@@ -239,7 +244,7 @@ $ sudo xcode-select --switch /path/to/Xcode.app
 - Aggressiveness levels: min, low, medium, high, max
 - Sign with adhoc provisioning profile to test and resign with app store provisioning to publish
 - By default it will always try to find and use the ixguard-license.txt or the provisioning file in the current working directory
-- Obfuscating the asset-catalog might cause a black screen instead of the launchscreen image and no icons in the app's quick actions (by long-pressing the app icon)
+- Obfuscating the `asset-catalog` might cause a black screen instead of the launchscreen image and no icons in the app's quick actions (by long-pressing the app icon)
 - RASP checks might slow the app (especially when launching) even when set to minimum aggressiveness
 
 
