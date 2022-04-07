@@ -1,7 +1,7 @@
 
 # **iXGuard notes**
 
-```
+```yml
 # License reference
 license:
   - "ixguard-license.txt"
@@ -14,7 +14,7 @@ monitor:
 
 # Codesigning Details
 export:
-  identity: '471013249E36298E3217A8A2A97C82AC833F519C'
+  identity: '471013249E36298********2A97C82AC833F519C'
   provisioning:
     - "comorganizationprofile_AdHoc.mobileprovision"
 
@@ -33,47 +33,47 @@ protection:
     obfuscate-symbols: true
     hide-symbols: true
     hide-swift-reflectionmd: true
-    blacklist:
+    denylist:
         - "partialName"
         - "namePart"
 
-  arithmetic-operations: # requires whitelists
+  arithmetic-operations: # requires allowlists
     enabled: true
-    whitelists:
+    allowlists:
       - level: medium
-        structured-whitelist:
+        structured-allowlist:
           interfaces:
             - name: ".*"
               instancemethods:
                 - name: "foo"
-        whitelist:
+        allowlist:
           - "foo.*"
           - "bar.*"
       - level: high
-        whitelist:
+        allowlist:
           - "PasswordDecryptionFn"
 
   control-flow: 
     enabled: true
 
-    logic: # requires whitelists
+    logic: # requires allowlists
       enabled: true
-      whitelists:
+      allowlists:
         - level: medium
-        whitelist:
+        allowlist:
           - "foo.*"
 
     calls:
       enabled: true
-      blacklist:
+      denylist:
         - "methodName"
         - "methodNameWithArgumentOne:AndTwo:"
 
-  data: # requires whitelists
+  data: # requires allowlists
     enabled: true
-    blacklist:
+    denylist:
       - "_objc_.*"
-    whitelist:
+    allowlist:
       - "license(.*)"
       - "(.*)key"
       - "any other strings / tokens used in the app"
@@ -88,15 +88,15 @@ protection:
       callback: "iXGuardCallback"
       continue-on-callback: true
       aggressiveness: min
-      whitelist:
+      allowlist:
         - "someMethod"
         - ".*+[Foo load].*"
-      blacklist:
+      denylist:
         - "prepareService.*"
 
     objc-calls:
       enabled: true
-      blacklist:
+      denylist:
         - "partialMethodName"
       
     system-library:
@@ -104,7 +104,7 @@ protection:
       aggressiveness: min
       callback: "iXGuardCallback"
       continue-on-callback: true
-      blacklist:
+      denylist:
         - "prepareService.*"
 
     tracing:
@@ -112,7 +112,7 @@ protection:
       memory-check: true
       callback: "iXGuardCallback"
       continue-on-callback: true
-      blacklist:
+      denylist:
         - "prepareService.*"
 
   app-integrity:
@@ -136,17 +136,17 @@ protection:
       callback: "iXGuardCallback"
       continue-on-callback: true
 
-  resources:  # requires whitelists
+  resources:  # requires allowlist
     enabled: true
-    asset-catalog: true
-    whitelist:
+    asset-catalog: false
+    allowlist:
       - 'secrets.plist'
       - '.*.yml' # all yml files
       - 'myAssets/image.png' # or '.*image.png'
       - '.*config.json'
-    whitelist-direct-access: # more efficient (fast) decryption
+    allowlist-direct-access: # more efficient (fast) decryption
       - 'offline-model.json'
-    blacklist:
+    denylist:
       - 'unecrypted.txt'
 ```
 
@@ -209,18 +209,26 @@ public func iXGuardUserIdGetter(buffer: UnsafeMutablePointer<Int8>, size: Int32)
 - add the ixguard-license.txt file in the folder
 
 - generate the default ixguard.yml and the obfuscated.ipa (and some other files):
-  $ ixguard -o obfuscated.ipa HellenicBank.ipa
+```bash
+$ ixguard -o Obfuscated.ipa MyOriginalApp.ipa
+```
 
 - alternatively generate obfuscated ipa with an already created ixguard.yml (if not in the same folder, modify the path in the terminal `ixguard.yml`)
-  $ ixguard -config ixguard.yml -o Obfuscated.ipa HellenicBank.ipa
+```bash  
+$ ixguard -config ixguard.yml -o Obfuscated.ipa MyOriginalApp.ipa
+```
 
 - find the correct identity to sign the obfuscated ipa (*note*: cannot test with a distribution bundleId. Instead, use an adhoc bundleId)
-  $ xcrun security find-identity -v -p codesigning
+```bash
+$ xcrun security find-identity -v -p codesigning
+```
 
 - Selecting Xcode Version:
 To view the currently selected Xcode version   $ xcode-select --print-path
 Selecting a different Xcode version
-  $ sudo xcode-select --switch /path/to/Xcode.app
+```bash
+$ sudo xcode-select --switch /path/to/Xcode.app
+```
 
 
 
@@ -231,6 +239,8 @@ Selecting a different Xcode version
 - Aggressiveness levels: min, low, medium, high, max
 - Sign with adhoc provisioning profile to test and resign with app store provisioning to publish
 - By default it will always try to find and use the ixguard-license.txt or the provisioning file in the current working directory
+- Obfuscating the asset-catalog might cause a black screen instead of the launchscreen image and no icons in the app's quick actions (by long-pressing the app icon)
+- RASP checks might slow the app (especially when launching) even when set to minimum aggressiveness
 
 
 
@@ -259,8 +269,8 @@ Selecting a different Xcode version
 ## Crash reports from console
 
 To symbolicate the crash and find the function and line in Xcode that causes it:
-```
-atos -arch <BinaryArchitecture> -o <PathToDSYMFile>/Contents/Resources/DWARF/<BinaryName>  -l <LoadAddress> <AddressesToSymbolicate>
+```bash
+$ atos -arch <BinaryArchitecture> -o <PathToDSYMFile>/Contents/Resources/DWARF/<BinaryName>  -l <LoadAddress> <AddressesToSymbolicate>
 ```
 
 ![Symbolicate crash](https://github.com/nicolaouG/iOS_miscellaneous/blob/main/iXGuard/symbolicate_crash.png "Symbolicate crash")
