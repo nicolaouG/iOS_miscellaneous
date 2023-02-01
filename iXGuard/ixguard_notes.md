@@ -236,6 +236,34 @@ public func iXGuardUserIdGetter(buffer: UnsafeMutablePointer<Int8>, size: Int32)
 - Guardsquare does not provide older ixguard executables/installers so you might not want to delete any downloaded ones
 
 
+## Xcode 14
+
+- IXGuard requires bitcode embedded in the product and its dependencies to apply protections.
+- Dependencies that do not contain bitcode cannot be protected by iXGuard. 
+- iXGuard requires you to have bitcode enabled in the original IPA. However, the protected IPA **does not contain any bitcode**
+- Bitcode is now deprecated. Starting with Xcode 14, bitcode is no longer required for watchOS and tvOS applications, and the **App Store no longer accepts bitcode** submissions from Xcode 14
+- The below were tested with Xcode 14 and 14.2, and iguard 4.6.12
+
+### In Xcode:
+Xcode > Toolchains > iXGuard Toolchain
+
+### With fastlane:
+```bash
+toolchain: "com.guardsquare. ixguard"
+```
+or
+```bash
+xcargs: "TOOLCHAINS= 'com .guardsquare.ixguard'"
+```
+
+### Post-action:
+edit scheme > archive > Post-actions > + New script
+```bash
+# https://customers.guardsquare.com/manual/ixguard/stable/latest/in-depth/bitcode-xcode-14-workflow.html
+# When using the iGuard toolchain for archiving with bitcode, run this to enable the AppStore export option
+~/Library/Developer/Toolchains/ixguard.xctoolchain/ixguard-process-xcarchive
+```
+
 
 ## Notes on the config
 
