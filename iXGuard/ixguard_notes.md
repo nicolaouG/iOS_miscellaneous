@@ -251,11 +251,11 @@ Xcode > Toolchains > iXGuard Toolchain
 
 ### With fastlane:
 ```bash
-toolchain: "com.guardsquare. ixguard"
+toolchain: "com.guardsquare.ixguard"
 ```
 or
 ```bash
-xcargs: "TOOLCHAINS= 'com .guardsquare.ixguard'"
+xcargs: "TOOLCHAINS='com.guardsquare.ixguard'"
 ```
 
 ### Post-action:
