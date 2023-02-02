@@ -246,6 +246,7 @@ public func iXGuardUserIdGetter(buffer: UnsafeMutablePointer<Int8>, size: Int32)
 
 ### In Xcode:
 Xcode > Toolchains > iXGuard Toolchain
+
 **!! Make sure to revert back to the default Xcode toolchain to run the app / unit tests / ui tests on a simulator**
 
 ### With fastlane:
